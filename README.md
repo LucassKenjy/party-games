@@ -11,22 +11,32 @@ Documentação completa:
 ## Estrutura
 
 - `server/` — Node.js + Express + Socket.IO. Lógica do jogo e das salas.
-- `client/` — React + Vite. Interface do jogador. *(em construção)*
+- `client/` — React + Vite. Interface do jogador.
 
-## Rodando o server localmente
+## Rodando localmente
+
+Em dois terminais:
 
 ```bash
 cd server
 npm install
 cp .env.example .env   # opcional: preencher SUPABASE_URL/SUPABASE_SERVICE_ROLE_KEY
-npm run dev
+npm run dev             # http://localhost:3001
 ```
 
-O server sobe em `http://localhost:3001` (`GET /health` para checar se está no ar).
+```bash
+cd client
+npm install
+cp .env.example .env   # aponta para o server local por padrão
+npm run dev             # http://localhost:5173
+```
 
-## Testes do server
+Abra `http://localhost:5173` em algumas abas (ou peça pros amigos acessarem
+pela mesma rede) para simular vários jogadores.
+
+## Testes
 
 ```bash
-cd server
-npm test
+cd server && npm test   # Jest: lógica do jogo + integração via Socket.IO
+cd client && npm test   # Vitest: componentes de tela
 ```
